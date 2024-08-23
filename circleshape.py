@@ -1,3 +1,5 @@
+from turtle import distance
+
 import pygame
 
 
@@ -23,3 +25,9 @@ class CircleShape(pygame.sprite.Sprite):
     def update(self, dt) -> None:
         # sub-classes must override
         pass
+
+    def collision_check(self, circleshape: "CircleShape") -> bool:
+        distance: float = self.position.distance_to(circleshape.position)
+        if distance < (self.radius + circleshape.radius):
+            return True
+        return False
